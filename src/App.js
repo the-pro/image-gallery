@@ -1,23 +1,23 @@
-import logo from './logo.svg';
 import './App.css';
+import Collection from './Collections';
+import CreateCollection from './CreateCollection';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Nav from './Nav';
+import EditComponent from './editCollection';
+import Fourofour from './fof';
 
-function App() {
+function App(props) {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+      <Nav/>
+        <Routes>
+          <Route path="/" exact element={<Collection {...props}/>}/>
+          <Route path="/create" exact element={<CreateCollection {...props}/>}/>
+          <Route path="/show/:id" exact element={<EditComponent {...props}/>}/>
+          <Route path=":any" element={<Fourofour/>}/>
+        </Routes>
+      </Router>
     </div>
   );
 }
